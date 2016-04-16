@@ -7,10 +7,10 @@
 
 extra-$(CONFIG_SPL_BUILD) := start.o
 
-obj-y	= clock.o mxs.o iomux.o timer.o
+obj-y	= clock.o mxs.o iomux.o timer.o spl_mem_init.o
 
 ifdef	CONFIG_SPL_BUILD
-obj-y	+= spl_boot.o spl_lradc_init.o spl_mem_init.o spl_power_init.o
+obj-y	+= spl_boot.o spl_lradc_init.o spl_power_init.o
 endif
 
 # Specify the target for use in elftosb call

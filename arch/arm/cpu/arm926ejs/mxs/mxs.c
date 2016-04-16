@@ -21,6 +21,8 @@
 #include <asm/arch/sys_proto.h>
 #include <linux/compiler.h>
 
+#include "mxs_init.h"
+
 DECLARE_GLOBAL_DATA_PTR;
 
 /* Lowlevel init isn't used on i.MX28, so just have a dummy here */
@@ -286,6 +288,11 @@ int mxs_dram_init(void)
 		hang();
 	}
 
+#ifndef CONFIG_SPL_BUILD
+	data->mem_dram_size = PHYS_SDRAM_1_SIZE;
+#else
+	data->mem_dram_size = mxs_mem_get_size();
+#endif
 	gd->ram_size = data->mem_dram_size;
 	return 0;
 }
