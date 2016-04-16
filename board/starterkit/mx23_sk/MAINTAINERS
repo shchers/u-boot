@@ -1,0 +1,6 @@
+MX23_SK BOARD
+M:	Sergey Shcherbakov <shchers@gmail.com>
+S:	Maintained
+F:	board/starterkit/mx23_sk/
+F:	include/configs/mx23_sk.h
+F:	configs/mx23_sk_defconfig

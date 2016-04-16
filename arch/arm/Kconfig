@@ -179,6 +179,14 @@ config TARGET_MX23_OLINUXINO
 	select CPU_ARM926EJS
 	select SUPPORT_SPL
 
+config TARGET_MX23_SK
+	bool "Support SK-i.MX233 board"
+	select CPU_ARM926EJS
+	select SUPPORT_SPL
+	help
+	  Freescale i.MX233 based board for development and debug.
+	  More information at http://starterkit.ru/html/index.php?name=shop&op=view&id=41
+
 config TARGET_BG0900
 	bool "Support bg0900"
 	select CPU_ARM926EJS
@@ -825,6 +833,7 @@ source "board/imx31_phycore/Kconfig"
 source "board/isee/igep0033/Kconfig"
 source "board/mpl/vcma9/Kconfig"
 source "board/olimex/mx23_olinuxino/Kconfig"
+source "board/starterkit/mx23_sk/Kconfig"
 source "board/phytec/pcm051/Kconfig"
 source "board/phytec/pcm052/Kconfig"
 source "board/ppcag/bg0900/Kconfig"
