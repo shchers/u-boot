@@ -200,7 +200,7 @@ static int ks_recv(struct eth_device *dev)
 				
 				/* discard dummy data and frame header, 
 				   packet length without frame header */		
-				NetReceive(ks->buff + 8, rxlen - 4);
+				net_process_received_packet(ks->buff + 8, rxlen - 4);
 
 				spi_claim_bus(ks->slave);
 			}
