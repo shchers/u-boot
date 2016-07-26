@@ -135,7 +135,7 @@ static void ks_fifo_read(ks_dev_t *ks, ushort len)
  * write packet to TX FIFO
  */
 static int ks_send(struct eth_device *dev,
-                   volatile void *packet,
+                   void *packet,
                    int length)
 {
     ks_dev_t *ks = dev->priv;
@@ -334,6 +334,7 @@ static void ks_halt(struct eth_device *dev)
     spi_release_bus(ks->slave);
 }
 
+#if defined(CONFIG_CMD_MII)
 /*
  * ks_phy_reg - convert MII register into a ks8851 register
  */
@@ -402,6 +403,7 @@ static int ks_phy_write(const char *devname,
 
 	return 0;
 }
+#endif
 
 /*
  * This is the only exported function.
