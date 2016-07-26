@@ -19,8 +19,7 @@
 #define CONFIG_CMD_CACHE
 #define CONFIG_CMD_DHCP
 #define CONFIG_CMD_PING
-#define CONFIG_CMD_EXT2
-#define CONFIG_CMD_FAT
+#define CONFIG_CMD_EXT4
 #define CONFIG_CMD_LED
 #define CONFIG_CMD_MMC
 #define CONFIG_CMD_USB
@@ -101,23 +100,23 @@
 		"fi ; "	\
 		"fi\0" \
 	"script=boot.scr\0"	\
-	"uimage=uImage\0" \
+	"uimage=boot/uImage\0" \
 	"console=ttyAMA0\0" \
-	"fdt_file=imx23-sk.dtb\0" \
+	"fdt_file=boot/imx23-sk.dtb\0" \
 	"fdt_addr=0x41000000\0" \
 	"boot_fdt=try\0" \
 	"ip_dyn=yes\0" \
 	"mmcdev=0\0" \
 	"mmcpart=2\0" \
-	"mmcroot=/dev/mmcblk0p3 rw rootwait\0" \
+	"mmcroot=/dev/mmcblk0p2 rw rootwait\0" \
 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
 		"root=${mmcroot}\0" \
 	"loadbootscript="  \
-		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
+		"ext4load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
 	"bootscript=echo Running bootscript from mmc ...; "	\
 		"source\0" \
-	"loaduimage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${uimage}\0" \
-	"loadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
+	"loaduimage=ext4load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${uimage}\0" \
+	"loadfdt=ext4load mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
 	"mmcboot=echo Booting from mmc ...; " \
 		"run mmcargs; " \
 		"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
