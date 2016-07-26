@@ -7,6 +7,9 @@
  */
 
 #include <common.h>
+#ifdef CONFIG_CMD_SPI
+#include <spi.h>
+#endif
 #include <asm/gpio.h>
 #include <asm/io.h>
 #include <asm/arch/iomux-mx23.h>
@@ -96,3 +99,16 @@ int board_init(void)
 
 	return 0;
 }
+
+#ifdef	CONFIG_CMD_NET
+int board_eth_init(bd_t *bis) {
+#ifdef CONFIG_KS8851
+	return ks8851_initialize(CONFIG_KS8851_SPI_BUS,
+	                         CONFIG_KS8851_SPI_CS,
+                             CONFIG_KS8851_SPI_CLOCK,
+                             SPI_MODE_0);
+#else
+	return -1;
+#endif
+}
+#endif

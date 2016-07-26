@@ -18,6 +18,7 @@
 
 #define CONFIG_CMD_CACHE
 #define CONFIG_CMD_DHCP
+#define CONFIG_CMD_PING
 #define CONFIG_CMD_EXT2
 #define CONFIG_CMD_FAT
 #define CONFIG_CMD_LED
@@ -59,8 +60,27 @@
 
 /* Ethernet */
 #ifdef CONFIG_CMD_NET
-#define CONFIG_USB_HOST_ETHER
-#define CONFIG_USB_ETHER_SMSC95XX
+#define CONFIG_CMD_SPI
+
+/* KS8851 connected to SSP1 */
+#define CONFIG_KS8851
+#define CONFIG_KS8851_SPI_BUS       0
+#define CONFIG_KS8851_SPI_CS        0
+#define CONFIG_KS8851_SPI_CLOCK     24000000
+
+/*
+ * No EEPROM with MAC address connected to KS8851
+ * So, MAC address will be generated.
+ */
+#define CONFIG_NET_RANDOM_ETHADDR
+#define CONFIG_LIB_RAND
+#endif
+
+/* SPI */
+#ifdef CONFIG_CMD_SPI
+#define CONFIG_MXS_SPI
+#define CONFIG_DEFAULT_SPI_BUS      0
+#define CONFIG_DEFAULT_SPI_MODE     SPI_MODE_0
 #endif
 
 /* Booting Linux */
